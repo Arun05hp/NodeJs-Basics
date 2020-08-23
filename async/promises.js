@@ -17,8 +17,6 @@
 //     console.log(err);
 //   });
 
-// Solving Callback Hell problem using Promise
-
 const users = require("./users.json");
 const movies = require("./movies.json");
 const reviews = require("./reviews.json");
@@ -73,17 +71,30 @@ const getUser = (name) => {
 //   });
 // });
 
-getMovie(1)
-  .then((movie) => {
-    return getReview(movie.id);
-  })
-  .then((review) => {
-    // console.log(review);
-    return getUser(review.reviewer);
-  })
-  .then((user) => {
+// Solving Callback Hell problem using Promise
+
+// getMovie(1)
+//   .then((movie) => {
+//     return getReview(movie.id);
+//   })
+//   .then((review) => {
+//     // console.log(review);
+//     return getUser(review.reviewer);
+//   })
+//   .then((user) => {
+//     console.log(user);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+(async () => {
+  try {
+    const movie = await getMovie(4);
+    const review = await getReview(movie.id);
+    const user = await getUser(review.reviewer);
     console.log(user);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  } catch (error) {
+    console.log(error);
+  }
+})();
