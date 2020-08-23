@@ -23,6 +23,7 @@ const getUser = (name, cb) => {
   }, 1000);
 };
 
+//Callback hell
 getMovie(3, (movie) => {
   console.log(movie);
   getReview(movie.id, (review) => {
