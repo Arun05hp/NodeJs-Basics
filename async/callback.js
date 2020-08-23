@@ -9,10 +9,26 @@ const getMovie = (id, cb) => {
   }, 1000);
 };
 
-const getReview = () => {};
+const getReview = (movieId, cb) => {
+  setTimeout(() => {
+    const review = reviews.find((review) => review.movie_id === movieId);
+    cb(review);
+  }, 1000);
+};
 
-const getUser = () => {};
+const getUser = (name, cb) => {
+  setTimeout(() => {
+    const user = users.find((user) => user.name === name);
+    cb(user);
+  }, 1000);
+};
 
 getMovie(3, (movie) => {
   console.log(movie);
+  getReview(movie.id, (review) => {
+    console.log(review);
+    getUser(review.reviewer, (user) => {
+      console.log(user);
+    });
+  });
 });
